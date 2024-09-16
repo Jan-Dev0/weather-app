@@ -1,44 +1,239 @@
+/* General reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  line-height: 1.5;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
 
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
+/* CSS variables */
+:root {
+  --primary-blue: #007bff;
+  --primary-blue-hover: #0056b3;
+  --white: #ffffff;
+  --sky-blue: #87ceeb;
+  --french-blue: hsl(209, 67%, 45%);
+  --celestial-blue: hsl(205, 61%, 51%);
+  --border-color: #ddd;
+  --background-light: rgba(255, 255, 255, 0.7);
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --card-border: 1px solid var(--border-color);
 }
 
-#locationInput {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: calc(100% - 22px);
-    margin-bottom: 10px;
+/* Global styles */
+html {
+  font-size: 62.5%; /* 1rem = 10px */
 }
 
-#fetchWeatherBtn {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+body {
+  font-family: "Arial", sans-serif;
+  font-size: 1.6rem;
+  background-color: var(--french-blue);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+
 }
 
-#fetchWeatherBtn:hover {
-    background-color: #218838;
+/* Weather app container */
+.weather-app {
+  width: 100%;
+  max-width: min-content; /* Increased width */
+  background-color: var(--background-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--card-shadow);
+  padding: 2rem;
+  margin-top: 4.8rem;
 }
 
-#weatherDisplay {
-    margin-top: 20px;
+/* Input container */
+.weather-app__input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.weather-app__input {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 4px 0 0 4px;
+  font-size: 1.6rem;
+}
+
+.weather-app__button {
+  padding: 1rem 2rem;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 1.6rem;
+  transition: background-color 0.3s ease;
+}
+
+.weather-app__button:hover {
+  background-color: var(--primary-blue-hover);
+}
+
+/* ... (die vorherigen Styles bleiben unverändert) */
+
+/* Current weather card styles */
+.weather-app__current {
+  background-color: var(--celestial-blue);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.weather-app__current-left {
+  flex: 2;
+}
+
+.weather-app__current-date {
+  margin-bottom: 1rem;
+}
+
+.weather-app__current-day {
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.weather-app__current-month-date {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.weather-app__current-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.weather-app__current-temperature {
+  flex: 1;
+}
+
+.weather-app__current-temp {
+  font-size: 3.2rem;
+  margin: 0;
+}
+
+.weather-app__current-condition {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.weather-app__current-icon {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start; /* Aligns the icon to the left */
+  align-items: center; /* Centers the icon vertically */
+}
+
+.weather-app__current-icon img {
+  width: 120px; /* Increased size of the icon */
+  height: auto;
+  margin-right: 1rem; /* Adds some space between the icon and the temperature */
+}
+
+.weather-app__current-right {
+  flex: 1;
+}
+
+.weather-app__current-details {
+  font-size: 1.6rem;
+}
+
+.weather-app__current-wind,
+.weather-app__current-humidity {
+  margin: 0.5rem 0;
+}
+
+/* Forecast container to ensure horizontal scrolling if needed */
+.weather-app__forecast {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem; /* Space between forecast items */
+  padding: 0;
+}
+.weather-app__forecast-list {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+
+}
+/* Forecast item styles */
+.weather-app__forecast-item {
+  background-color: var(--celestial-blue);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px var(--card-shadow);
+  flex: 0 0 auto; /* Prevent shrinking */
+  min-width: 120px; /* Minimum width for each item */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Forecast item content container for horizontal alignment */
+.weather-app__forecast-item-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styles for horizontal elements within forecast item */
+.weather-app__forecast-item h3 {
+  font-size: 1.6rem;
+  margin: 0.5rem 0;
+}
+
+.weather-app__forecast-icon img {
+  width: 60px; /* Size of the icon */
+  height: auto;
+}
+
+.weather-app__forecast-temp {
+  font-size: 1.8rem;
+  margin: 0.5rem 0;
+}
+
+.weather-app__forecast-condition {
+  font-size: 1.4rem;
+  margin: 0;
 }
