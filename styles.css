@@ -60,10 +60,12 @@ body {
   color: var(--white);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+
   height: 100vh;
 
 }
+
+
 
 /* Weather app container */
 .weather-app {
@@ -72,8 +74,9 @@ body {
   background-color: var(--background-light);
   border-radius: 8px;
   box-shadow: 0 4px 8px var(--card-shadow);
-  padding: 2rem;
-  margin-top: 4.8rem;
+  margin-top: 3.2rem;
+  min-width: 64rem;
+  padding: 2.4rem;
 }
 
 /* Input container */
@@ -112,7 +115,7 @@ body {
 .weather-app__current {
   background-color: var(--celestial-blue);
   border-radius: 8px;
-  padding: 2rem;
+  
   box-shadow: 0 4px 12px var(--card-shadow);
   display: flex;
   justify-content: space-between;

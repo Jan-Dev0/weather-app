@@ -5,20 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="weather-app">
-        <div class="weather-app__input-container">
-            <input type="text" id="cityInput" placeholder="Enter city name" class="weather-app__input" />
-            <button id="fetchWeatherBtn" class="weather-app__button">Get Weather</button>
-        </div>
-        <div class="weather-app__results">
-            <div id="weather" class="weather-app__current"></div>
-            <div id="forecast" class="weather-app__forecast">
-                <ul id="forecastList" class="weather-app__forecast-list"></ul>
+    <main>
+        <div class="weather-app">
+            <div class="weather-app__input-container">
+                <input type="text" id="cityInput" placeholder="Enter city name" class="weather-app__input" />
+                <button id="fetchWeatherBtn" class="weather-app__button">Get Weather</button>
+            </div>
+            <div class="weather-app__results">
+                <div id="weather" class="weather-app__current"></div>
+                <div id="forecast" class="weather-app__forecast">
+                    <ul id="forecastList" class="weather-app__forecast-list"></ul>
+                </div>
             </div>
         </div>
-    </div>
-    <script src="script.js"></script>
+
+    </main>
+
+   
 </body>
 </html>

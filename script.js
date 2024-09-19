@@ -47,8 +47,8 @@ function displayWeatherData(data) {
   const condition = data.weather[0].description;
   const windSpeed = data.wind.speed;
   const humidity = data.main.humidity;
-
-  document.getElementById("weather").innerHTML = `
+  const weather = document.getElementById("weather");
+  weather.innerHTML = `
     <div class="weather-app__current-left">
       <div class="weather-app__current-date">
         <h2 class="weather-app__current-day">${dayName}</h2>
@@ -71,6 +71,7 @@ function displayWeatherData(data) {
       </div>
     </div>
   `;
+  weather.style.padding = "2rem";
 }
 
 function displayForecastData(data) {
@@ -103,9 +104,6 @@ function displayForecastData(data) {
     }
   });
 }
-
-
-
 
 // Event listener for fetching weather data
 fetchWeatherBtn.addEventListener("click", function () {
